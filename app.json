@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "wherewasthat",
+    "slug": "wherewasthat",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
