@@ -3,18 +3,20 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import Constants from "expo-constants";
 import HomeScreen from './HomeScreen';
+import AddLocationsScreen from "./AddLocationsScreen";
 import CampsitesScreen from "./CampsitesScreen";
 import HikesScreen from "./HikesScreen";
+import OverlooksScreen from "./OverlooksScreen";
 
 const Drawer = createDrawerNavigator();
 
 const screenOptions = {
-    headerTintColor: '#fff',
-    headerStyle: {backgroundColor: '#157a2cff'}
+    headerTintColor: '#666db7ff',
+    headerStyle: {backgroundColor: '#adbbb0ff'},
 };
 
 const HomeNavigator = () => {
-    const Stack = createDrawerNavigator()
+    const Stack = createStackNavigator();
 
     return (
         <Stack.Navigator screenOptions={screenOptions}>
@@ -24,6 +26,24 @@ const HomeNavigator = () => {
                 options={{ 
                     headerShown: false,
                     title: 'Home' }}
+            />
+        </Stack.Navigator>
+    )
+}
+
+const AddLocationsNavigator = () => {
+    const Stack = createStackNavigator();
+    return (
+        <Stack.Navigator
+            initialRouteName='AddLocations'
+            screenOptions={screenOptions}
+        >
+            <Stack.Screen 
+                name='AddLocations'
+                component={AddLocationsScreen}
+                options={{ 
+                    headerShown: false,
+                    title: 'Add Locations' }}
             />
         </Stack.Navigator>
     )
@@ -66,6 +86,26 @@ const HikesNavigator = () => {
     )
 }
 
+
+const OverlooksNavigator = () => {
+    const Stack = createStackNavigator();
+    return (
+        <Stack.Navigator
+            initialRouteName="Overlooks"
+            screenOptions={screenOptions}
+        >
+            <Stack.Screen 
+                name='Overlooks'
+                component={OverlooksScreen}
+                options={{
+                    headerShown: false,
+                    title: 'Overlooks'
+                }}
+            />
+        </Stack.Navigator>
+    )
+}
+
 const Main = () => {
     return (
         <View
@@ -77,7 +117,11 @@ const Main = () => {
             <Drawer.Navigator
                 initialRouteName="HomeNav"
                 screenOptions={{
-                    drawerStyle: { backgroundColor: '#60b56eff'},
+                    drawerStyle: { backgroundColor: '#769059ff'},
+                    drawerActiveTintColor: '#234a07ff',
+                    drawerLabelStyle: { color: '#fff'},
+                    headerStyle: {backgroundColor: '#558453ff'},
+                    headerTitleStyle: { color: '#fff'},
                     headerShown: true,
                     swipeEdgeWidth: 200
                 }}
@@ -86,15 +130,22 @@ const Main = () => {
                     name='HomeNav'
                     component={HomeNavigator}
                     options={{
-                        title: 'Homes',
+                        title: 'Home',
                         
+                    }}
+                />
+                <Drawer.Screen 
+                    name='AddLocationsScreen'
+                    component={AddLocationsNavigator}
+                    options={{
+                        title: 'Add New Locations'
                     }}
                 />
                 <Drawer.Screen 
                     name='CampsitesScreen'
                     component={CampsitesNavigator}
                     options={{
-                        title: 'Campsites',
+                        title: 'Your Campsites',
                         
                     }}
                 />
@@ -102,8 +153,15 @@ const Main = () => {
                     name='HikesScreen'
                     component={HikesNavigator}
                     options={{
-                        title: 'Hikes',
+                        title: 'Your Hikes',
                         
+                    }}
+                />
+                <Drawer.Screen 
+                    name='OverlooksScreen'
+                    component={OverlooksNavigator}
+                    options={{
+                        title: 'Your Overlooks'
                     }}
                 />
             </Drawer.Navigator>
