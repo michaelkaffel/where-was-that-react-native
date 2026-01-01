@@ -4,6 +4,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import Constants from "expo-constants";
 import HomeScreen from './HomeScreen';
 import CampsitesScreen from "./CampsitesScreen";
+import HikesScreen from "./HikesScreen";
 
 const Drawer = createDrawerNavigator();
 
@@ -20,7 +21,9 @@ const HomeNavigator = () => {
             <Stack.Screen 
                 name='Home'
                 component={HomeScreen}
-                options={{ title: 'Home' }}
+                options={{ 
+                    headerShown: false,
+                    title: 'Home' }}
             />
         </Stack.Navigator>
     )
@@ -36,12 +39,32 @@ const CampsitesNavigator = () => {
             <Stack.Screen 
                 name='Campsites'
                 component={CampsitesScreen}
-                options={{ title: 'Campsites' }}
+                options={{ 
+                    headerShown: false,
+                    title: 'Campsites' }}
             />
             
         </Stack.Navigator>
     );
 };
+
+const HikesNavigator = () => {
+    const Stack = createStackNavigator();
+    return (
+        <Stack.Navigator
+            initialRouteName='Hikes'
+            screenOptions={screenOptions}
+        >
+            <Stack.Screen 
+                name='Hikes'
+                component={HikesScreen}
+                options={{ 
+                    headerShown: false,
+                    title: 'Hikes' }}
+            />
+        </Stack.Navigator>
+    )
+}
 
 const Main = () => {
     return (
@@ -63,8 +86,8 @@ const Main = () => {
                     name='HomeNav'
                     component={HomeNavigator}
                     options={{
-                        title: 'Home',
-                        headerShown: true
+                        title: 'Homes',
+                        
                     }}
                 />
                 <Drawer.Screen 
@@ -72,7 +95,15 @@ const Main = () => {
                     component={CampsitesNavigator}
                     options={{
                         title: 'Campsites',
-                        headerShown: true
+                        
+                    }}
+                />
+                <Drawer.Screen 
+                    name='HikesScreen'
+                    component={HikesNavigator}
+                    options={{
+                        title: 'Hikes',
+                        
                     }}
                 />
             </Drawer.Navigator>
