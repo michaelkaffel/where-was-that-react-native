@@ -5,6 +5,7 @@ import Constants from "expo-constants";
 import HomeScreen from './HomeScreen';
 import AddLocationsScreen from "./AddLocationsScreen";
 import CampsitesScreen from "./CampsitesScreen";
+import CampsiteInfoScreen from "./CampsiteInfoScreen";
 import HikesScreen from "./HikesScreen";
 import OverlooksScreen from "./OverlooksScreen";
 
@@ -63,7 +64,13 @@ const CampsitesNavigator = () => {
                     headerShown: false,
                     title: 'Campsites' }}
             />
-            
+            <Stack.Screen 
+                name='CampsiteInfo'
+                component={CampsiteInfoScreen}
+                options={({ route }) => ({
+                    title: route.params.campsite.title
+                })}
+            />
         </Stack.Navigator>
     );
 };
@@ -146,7 +153,7 @@ const Main = () => {
                     component={CampsitesNavigator}
                     options={{
                         title: 'Your Campsites',
-                        
+                        headerShown: true
                     }}
                 />
                 <Drawer.Screen 
