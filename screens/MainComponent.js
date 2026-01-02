@@ -7,6 +7,7 @@ import AddLocationsScreen from "./AddLocationsScreen";
 import CampsitesScreen from "./CampsitesScreen";
 import CampsiteInfoScreen from "./CampsiteInfoScreen";
 import HikesScreen from "./HikesScreen";
+import HikeInfoScreen from "./HikeInfoScreen";
 import OverlooksScreen from "./OverlooksScreen";
 
 const Drawer = createDrawerNavigator();
@@ -88,6 +89,13 @@ const HikesNavigator = () => {
                 options={{ 
                     headerShown: false,
                     title: 'Hikes' }}
+            />
+            <Stack.Screen 
+                name='HikeInfo'
+                component={HikeInfoScreen}
+                options={({ route }) => ({
+                    title: route.params.hike.title
+                })}
             />
         </Stack.Navigator>
     )
