@@ -6,7 +6,7 @@ import { CAMPSITES } from "../shared/CAMPSITES";
 const CampsitesScreen = ({ navigation }) => {
     const [campsites, setCampsites] = useState(CAMPSITES);
 
-    const renderDirectoryItem = ({ item: campsite }) => {
+    const renderCampsite = ({ item: campsite }) => {
         return (
             <ListItem
                 key={campsite.id}
@@ -28,7 +28,7 @@ const CampsitesScreen = ({ navigation }) => {
     return (
         <FlatList 
             data={campsites}
-            renderItem={renderDirectoryItem}
+            renderItem={renderCampsite}
             keyExtractor={(item) => item.id.toString()}
         />
     );
