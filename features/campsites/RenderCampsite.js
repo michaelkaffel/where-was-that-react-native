@@ -1,5 +1,17 @@
 import { Text, View } from 'react-native';
-import { Card, Image } from 'react-native-elements'
+import { Card, Image } from 'react-native-elements';
+import { StyleSheet } from 'react-native';
+
+const styles = StyleSheet.create({
+    location: {
+        textAlign: 'right',
+        marginTop: 5,
+    },
+    description: {
+        marginTop: 5,
+        fontSize: 20,
+    }
+})
 
 const RenderCampsite = ({ campsite }) => {
     if (campsite) {
@@ -8,8 +20,8 @@ const RenderCampsite = ({ campsite }) => {
                 <Card.Title>{campsite.title}</Card.Title>
                 <Card.Divider/>
                 <Card.Image source={campsite.image}></Card.Image>
-                <Text>{campsite.location}</Text>
-                <Text>{campsite.description}</Text>
+                <Text style={styles.location}>{campsite.location}</Text>
+                <Text style={styles.description}>{campsite.description}</Text>
             </Card>
         )
     }
