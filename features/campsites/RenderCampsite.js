@@ -1,11 +1,15 @@
 import { Text, View } from 'react-native';
-import { Card } from 'react-native-elements'
+import { Card, Image } from 'react-native-elements'
 
 const RenderCampsite = ({ campsite }) => {
     if (campsite) {
         return (
             <Card>
-                <Text>{campsite.title}</Text>
+                <Card.Title>{campsite.title}</Card.Title>
+                <Card.Divider/>
+                <Card.Image source={campsite.image}></Card.Image>
+                <Text>{campsite.location}</Text>
+                <Text>{campsite.description}</Text>
             </Card>
         )
     }
