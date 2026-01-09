@@ -70,7 +70,8 @@ const CampsitesNavigator = () => {
                 name='CampsiteInfo'
                 component={CampsiteInfoScreen}
                 options={({ route }) => ({
-                    title: route.params.campsite.title
+                    title: 'Campsites',
+                    
                 })}
             />
         </Stack.Navigator>
