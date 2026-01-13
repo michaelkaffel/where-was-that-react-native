@@ -9,25 +9,30 @@ import HeaderImage from '../assets/images/IMG_5647.jpeg';
 const HomeScreen = () => {
     return (
 
-        
-            <ScrollView style={styles.container}>
-                <View style={styles.headerContainer}>
-                    <Text style={styles.headerTitle}>Where Was</Text>
-                    <Text style={styles.headerTitle}>That?</Text>
-                    <Text style={styles.headerCaption}>Don't lose track of all your favorite hiking trails, camping spots, and scenic overlooks.</Text>
-                </View>
-                <Card >
-                    <Card.Image style={{height: 300}} source={HeaderImage}></Card.Image>
-                </Card>
-                
-                
 
-                {/* <Image
+        <ScrollView style={styles.container}>
+            <View style={styles.headerContainer}>
+                <Text style={styles.headerTitle}>Where Was</Text>
+                <Text style={styles.headerTitle}>That?</Text>
+            </View>
+            <Card >
+                <Card.Image style={{ height: 300 }} source={HeaderImage}></Card.Image>
+            </Card>
+            <View style={styles.headerContainer}>
+
+                <Text style={styles.headerCaption}>Don't lose track of all your favorite hiking trails, camping spots, and scenic overlooks.</Text>
+            </View>
+
+
+
+
+
+            {/* <Image
                     style={styles.image}
                     source={HeaderImage}
                 /> */}
 
-                {/* <Tile
+            {/* <Tile
                     imageSrc={HeaderImage}
                     title="Where Was That"
                     titleStyle={{ color: 'black', fontSize: 30, fontWeight: 900 }}
@@ -35,15 +40,15 @@ const HomeScreen = () => {
                     caption="Don't lose track of all your favorite hiking trails, camping spots, and scenic overlooks."
                     captionStyle={{ color: 'white', backgroundColor: 'grey', borderRadius: 7, padding: 10 }}
                 /> */}
-                {/* <View style={styles.buttonContainer}>
+            {/* <View style={styles.buttonContainer}>
                     <Button style={styles.button} title='Hikes' />
                     <Button style={styles.button} title='Campsites' />
                     <Button style={styles.button} title='Overlooks' />
                 </View> */}
-            </ScrollView>
-            
-            
-       
+        </ScrollView>
+
+
+
 
     )
 };
@@ -56,7 +61,8 @@ const styles = StyleSheet.create({
 
     },
     headerContainer: {
-        margin: 20,
+        marginHorizontal: 20,
+        marginTop: 20
     },
     headerTitle: {
         fontSize: 48,
