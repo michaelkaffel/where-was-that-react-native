@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { Text, View, ScrollView, StyleSheet, Switch, Button, Platform } from 'react-native';
+import { Text, View, ScrollView, StyleSheet, Button, Platform } from 'react-native';
 import { Input, Icon } from 'react-native-elements';
-// import { Picker } from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-const AddCampsitesForm = () => {
+const AddCampsiteForm = () => {
 
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -14,9 +13,27 @@ const AddCampsitesForm = () => {
 
     const onDateChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
-        setShowCalendar(Platform.OS ==='ios');
+        setShowCalendar(Platform.OS === 'ios');
         setDateVisited(currentDate)
     };
+
+    const handleSubmit = () => {
+        const newComment = {
+            title,
+            description,
+            location,
+            dateVisited: dateVisited.toISOString('en-US')
+        }
+        console.log(title, description, location, dateVisited)
+        
+    }
+
+    const resetForm = () => {
+        setTitle('');
+        setDescription('');
+        setLocation('');
+        setDateVisited(new Date());
+    }
 
     return (
         <>
@@ -64,20 +81,29 @@ const AddCampsitesForm = () => {
                     <Button
                         onPress={() => setShowCalendar(!showCalendar)}
                         title={dateVisited.toLocaleDateString('en-US')}
-                        color='#63b25a'
-                        accessibilityLabel='Tap me to select a reservation date'
+                        color='#558453ff'
+                        accessibilityLabel='Tap me to select a date'
                     />
                 </View>
                 {showCalendar && (
                     <DateTimePicker
-                        style={styles.formItem}
+                        style={styles.datePickerContainer}
                         value={dateVisited}
                         mode='date'
                         display='default'
                         onChange={onDateChange}
                     />
                 )}
-
+                <View style={{margin: 10}}>
+                <Button
+                    title='Submit'
+                    color='#558453ff'
+                    onPress={() => {
+                        handleSubmit();
+                        resetForm();
+                    }}
+                />
+                </View>
             </ScrollView>
         </>
     )
@@ -87,13 +113,13 @@ const styles = StyleSheet.create({
     container: {
         marginTop: 20,
         flex: 1,
-        
+
         justifyContent: 'flex-start'
     },
     formRow: {
-        
+
         justifyContent: 'center',
-        
+
         flexDirection: 'row',
         margin: 20
     },
@@ -102,8 +128,11 @@ const styles = StyleSheet.create({
         flex: 2
     },
     formItem: {
-        flex: 1
+        flex: 1,
     },
+    datePickerContainer: {
+        marginLeft: 20,
+    }
 });
 
-export default AddCampsitesForm;
+export default AddCampsiteForm;
