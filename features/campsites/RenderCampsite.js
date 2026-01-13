@@ -1,6 +1,7 @@
 import { Text, View } from 'react-native';
-import { Card, Image } from 'react-native-elements';
+import { Card } from 'react-native-elements';
 import { StyleSheet } from 'react-native';
+import { baseUrl } from '../../shared/baseUrl';
 
 const styles = StyleSheet.create({
     location: {
@@ -19,7 +20,7 @@ const RenderCampsite = ({ campsite }) => {
             <Card>
                 <Card.Title>{campsite.title}</Card.Title>
                 <Card.Divider/>
-                <Card.Image source={campsite.image}></Card.Image>
+                <Card.Image source={{ uri: baseUrl + campsite.image}}></Card.Image>
                 <Text style={styles.location}>{campsite.location}</Text>
                 <Text style={styles.description}>{campsite.description}</Text>
             </Card>
