@@ -14,6 +14,7 @@ import OverlooksScreen from "./OverlooksScreen";
 import OverlookInfoScreen from "./OverlookInfoScreen";
 import { fetchCampsites } from "../features/campsites/campsitesSlice";
 import { fetchHikes } from "../features/hikes/hikesSlice";
+import { fetchOverlooks } from "../features/overlooks/overlooksSlice";
 
 const Drawer = createDrawerNavigator();
 
@@ -140,7 +141,8 @@ const Main = () => {
 
     useEffect(() => {
         dispatch(fetchCampsites());
-        dispatch(fetchHikes())
+        dispatch(fetchHikes());
+        dispatch(fetchOverlooks());
     }, [dispatch])
 
     return (

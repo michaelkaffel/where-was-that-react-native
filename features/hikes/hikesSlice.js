@@ -9,7 +9,7 @@ export const fetchHikes = createAsyncThunk(
             return Promise.reject('Unable to fetch, status: ' + response.staus);
         }
         const data = await response.json();
-        console.log(data);
+        
         return data
     }
 )
