@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useSelector } from "react-redux";
+// import { useState } from "react";
 import { FlatList } from "react-native";
 import { Avatar, ListItem } from "react-native-elements";
-import { OVERLOOKS } from "../shared/OVERLOOKS";
+import { baseUrl } from "../shared/baseUrl";
+// import { OVERLOOKS } from "../shared/OVERLOOKS";
 
 const OverlooksScreen = ({ navigation }) => {
-    const [overlooks, setOverlooks] = useState(OVERLOOKS);
+    // const [overlooks, setOverlooks] = useState(OVERLOOKS);
+
+    const overlooks = useSelector((state) => state.overlooks.overlooksArray)
 
     const renderOverlook = ({ item: overlook }) => {
         return (
@@ -14,7 +18,7 @@ const OverlooksScreen = ({ navigation }) => {
                     navigation.navigate('OverlookInfo', { overlook })
                 }
             >
-                <Avatar source={overlook.image} rounded />
+                <Avatar source={{ uri: baseUrl + overlook.image}} rounded />
                 <ListItem.Content>
                     <ListItem.Title>{overlook.title}</ListItem.Title>
                     <ListItem.Subtitle>{overlook.location}</ListItem.Subtitle>

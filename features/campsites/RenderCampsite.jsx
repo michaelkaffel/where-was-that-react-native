@@ -1,6 +1,25 @@
 import { Text, View } from 'react-native';
-import { Card, Image } from 'react-native-elements';
+import { Card } from 'react-native-elements';
 import { StyleSheet } from 'react-native';
+import { baseUrl } from '../../shared/baseUrl';
+
+
+
+const RenderCampsite = ({ campsite }) => {
+    if (campsite) {
+        return (
+            <Card>
+                <Card.Title>{campsite.title}</Card.Title>
+                <Card.Divider/>
+                <Card.Image source={{ uri: baseUrl + campsite.image}}></Card.Image>
+                <Text style={styles.location}>{campsite.location}</Text>
+                <Text style={styles.description}>{campsite.description}</Text>
+            </Card>
+        )
+    }
+
+    return <View/>
+};
 
 const styles = StyleSheet.create({
     location: {
@@ -11,22 +30,6 @@ const styles = StyleSheet.create({
         marginTop: 5,
         fontSize: 20,
     }
-})
-
-const RenderCampsite = ({ campsite }) => {
-    if (campsite) {
-        return (
-            <Card>
-                <Card.Title>{campsite.title}</Card.Title>
-                <Card.Divider/>
-                <Card.Image source={campsite.image}></Card.Image>
-                <Text style={styles.location}>{campsite.location}</Text>
-                <Text style={styles.description}>{campsite.description}</Text>
-            </Card>
-        )
-    }
-
-    return <View/>
-};
+});
 
 export default RenderCampsite;

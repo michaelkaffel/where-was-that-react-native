@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useSelector } from "react-redux";
+// import { useState } from "react";
 import { FlatList } from "react-native";
 import { Avatar, ListItem } from "react-native-elements";
-import { HIKES } from "../shared/HIKES";
+import { baseUrl } from "../shared/baseUrl";
+// import { HIKES } from "../shared/HIKES";
 
 const HikesScreen = ({ navigation }) => {
-    const [hikes, setHikes] = useState(HIKES);
+    // const [hikes, setHikes] = useState(HIKES);
+
+    const hikes = useSelector((state) => state.hikes.hikesArray);
 
     const renderHike = ({ item: hike }) => {
         return (
@@ -14,7 +18,7 @@ const HikesScreen = ({ navigation }) => {
                     navigation.navigate('HikeInfo', { hike })
                 }
             >
-                <Avatar source={hike.image} rounded />
+                <Avatar source={{ uri: baseUrl + hike.image}} rounded />
                 <ListItem.Content>
                     <ListItem.Title>{hike.title}</ListItem.Title>
                     <ListItem.Subtitle>

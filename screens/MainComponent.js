@@ -1,3 +1,5 @@
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 import { Platform, View } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -10,6 +12,9 @@ import HikesScreen from "./HikesScreen";
 import HikeInfoScreen from "./HikeInfoScreen";
 import OverlooksScreen from "./OverlooksScreen";
 import OverlookInfoScreen from "./OverlookInfoScreen";
+import { fetchCampsites } from "../features/campsites/campsitesSlice";
+import { fetchHikes } from "../features/hikes/hikesSlice";
+import { fetchOverlooks } from "../features/overlooks/overlooksSlice";
 
 const Drawer = createDrawerNavigator();
 
@@ -131,6 +136,15 @@ const OverlooksNavigator = () => {
 }
 
 const Main = () => {
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchCampsites());
+        dispatch(fetchHikes());
+        dispatch(fetchOverlooks());
+    }, [dispatch])
+
     return (
         <View
             style={{
