@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 // import { useState } from "react";
-import { FlatList } from "react-native";
+import { FlatList, Button, View } from "react-native";
 import { Avatar, ListItem } from "react-native-elements";
 import { baseUrl } from "../shared/baseUrl";
 // import { OVERLOOKS } from "../shared/OVERLOOKS";
@@ -14,11 +14,11 @@ const OverlooksScreen = ({ navigation }) => {
         return (
             <ListItem
                 key={overlook.id}
-                onPress={() => 
+                onPress={() =>
                     navigation.navigate('OverlookInfo', { overlook })
                 }
             >
-                <Avatar source={{ uri: baseUrl + overlook.image}} rounded />
+                <Avatar source={{ uri: baseUrl + overlook.image }} rounded />
                 <ListItem.Content>
                     <ListItem.Title>{overlook.title}</ListItem.Title>
                     <ListItem.Subtitle>{overlook.location}</ListItem.Subtitle>
@@ -28,11 +28,27 @@ const OverlooksScreen = ({ navigation }) => {
     };
 
     return (
-        <FlatList 
-            data={overlooks}
-            renderItem={renderOverlook}
-            keyExtractor={(item) => item.id.toString()}
-        />
+        <>
+            <View style={{ margin: 15 }}>
+                <Button
+                    title='Add Overlooks'
+                    raised
+                    color='#aa7804'
+                    style={{ margin: 15 }}
+                    onPress={() => {
+                        navigation.navigate('AddLocationsScreen');
+
+                    }
+                    }
+
+                />
+            </View>
+            <FlatList
+                data={overlooks}
+                renderItem={renderOverlook}
+                keyExtractor={(item) => item.id.toString()}
+            />
+        </>
     );
 };
 

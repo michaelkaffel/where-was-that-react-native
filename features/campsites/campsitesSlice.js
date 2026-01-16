@@ -21,7 +21,16 @@ const campsitesSlice = createSlice({
         errMsg: null,
         campsitesArray: []
     },
-    reducers: {},
+    reducers: {
+        toggleFavoriteCampsite: (state, action) => {
+            const campsite = state.campsitesArray.find(
+                (campsite) => campsite.id === action.payload
+            );
+            if (campsite) {
+                campsite.favorite = !campsite.favorite
+            }
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchCampsites.pending, (state) => {
@@ -40,4 +49,6 @@ const campsitesSlice = createSlice({
     }
 });
 
-export const campsitesReducer = campsitesSlice.reducer
+export const campsitesReducer = campsitesSlice.reducer;
+
+export const { toggleFavoriteCampsite } = campsitesSlice.actions
