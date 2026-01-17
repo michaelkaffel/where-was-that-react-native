@@ -1,14 +1,17 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 // import { useState } from "react";
 import { FlatList, Button, View } from "react-native";
-import { Avatar, ListItem } from "react-native-elements";
+import { Avatar, ListItem, Icon } from "react-native-elements";
 import { baseUrl } from "../shared/baseUrl";
+import { toggleFavoriteOverlook } from "../features/overlooks/overlooksSlice";
 // import { OVERLOOKS } from "../shared/OVERLOOKS";
 
 const OverlooksScreen = ({ navigation }) => {
     // const [overlooks, setOverlooks] = useState(OVERLOOKS);
 
-    const overlooks = useSelector((state) => state.overlooks.overlooksArray)
+    const overlooks = useSelector((state) => state.overlooks.overlooksArray).toReversed();
+
+    const dispatch = useDispatch()
 
     const renderOverlook = ({ item: overlook }) => {
         return (
@@ -23,6 +26,14 @@ const OverlooksScreen = ({ navigation }) => {
                     <ListItem.Title>{overlook.title}</ListItem.Title>
                     <ListItem.Subtitle>{overlook.location}</ListItem.Subtitle>
                 </ListItem.Content>
+                <Icon 
+                    name={overlook.favorite ? 'heart' : 'heart-o'}
+                    type='font-awesome'
+                    color='#da0e0e'
+                    onPress={() => {
+                        dispatch(toggleFavoriteOverlook(overlook.id))
+                    }}
+                />
             </ListItem>
         );
     };

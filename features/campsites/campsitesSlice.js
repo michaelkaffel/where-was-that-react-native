@@ -50,5 +50,5 @@ const campsitesSlice = createSlice({
 });
 
 export const campsitesReducer = campsitesSlice.reducer;
-
 export const { toggleFavoriteCampsite } = campsitesSlice.actions
+

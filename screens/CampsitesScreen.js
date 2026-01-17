@@ -3,15 +3,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { FlatList, Button, View } from "react-native";
 import { Avatar, ListItem, Icon } from 'react-native-elements';
 import { baseUrl } from "../shared/baseUrl";
-import { toggleFavoriteCampsite } from "../features/campsites/campsitesSlice";
+import { selectAllCampsites, toggleFavoriteCampsite } from "../features/campsites/campsitesSlice";
 // import { CAMPSITES } from "../shared/CAMPSITES";
 
 const CampsitesScreen = ({ navigation }) => {
     // const [campsites, setCampsites] = useState(CAMPSITES);
     const dispatch = useDispatch()
 
-    const campsites = useSelector((state) => state.campsites.campsitesArray);
-    const campsitesList = campsites.toReversed()
+    const campsites = useSelector((state) => state.campsites.campsitesArray).toReversed();
+    
 
     const renderCampsite = ({ item: campsite }) => {
         return (
@@ -36,7 +36,6 @@ const CampsitesScreen = ({ navigation }) => {
                     color='#da0e0e'
                     onPress={() => {
                         dispatch(toggleFavoriteCampsite(campsite.id));
-                        console.log('test')
                     }}
                 />
             </ListItem>
@@ -61,7 +60,7 @@ const CampsitesScreen = ({ navigation }) => {
                 />
             </View>
             <FlatList
-                data={campsitesList}
+                data={campsites}
                 renderItem={renderCampsite}
                 keyExtractor={(item) => item.id.toString()}
             />
