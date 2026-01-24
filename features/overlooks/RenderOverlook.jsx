@@ -33,6 +33,7 @@ const RenderOverlook = ({ overlookId }) => {
                 />
                 <Text>{overlook.location}</Text>
             </View>
+            <Card.Divider />
             <Text style={styles.description}>{overlook.description}</Text>
         </Card>
     )
