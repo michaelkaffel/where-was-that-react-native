@@ -1,10 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
-// import { useState } from "react";
 import { FlatList, Button, View } from "react-native";
 import { Avatar, ListItem, Icon } from 'react-native-elements';
-import { baseUrl } from "../shared/baseUrl";
 import { toggleFavoriteCampsite } from "../features/campsites/campsitesSlice";
-// import { CAMPSITES } from "../shared/CAMPSITES";
 
 const CampsitesScreen = ({ navigation }) => {
     // const [campsites, setCampsites] = useState(CAMPSITES);

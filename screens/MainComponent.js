@@ -12,8 +12,8 @@ import HikesScreen from "./HikesScreen";
 import HikeInfoScreen from "./HikeInfoScreen";
 import OverlooksScreen from "./OverlooksScreen";
 import OverlookInfoScreen from "./OverlookInfoScreen";
-import { fetchCampsites } from "../features/campsites/campsitesSlice";
-import { fetchHikes } from "../features/hikes/hikesSlice";
+
+
 import { fetchOverlooks } from "../features/overlooks/overlooksSlice";
 
 const Drawer = createDrawerNavigator();
@@ -101,7 +101,7 @@ const HikesNavigator = () => {
                 name='HikeInfo'
                 component={HikeInfoScreen}
                 options={({ route }) => ({
-                    title: route.params.hike.title
+                    title: 'Hikes'
                 })}
             />
         </Stack.Navigator>
@@ -140,7 +140,6 @@ const Main = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchHikes());
         dispatch(fetchOverlooks());
     }, [dispatch])
 

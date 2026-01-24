@@ -1,13 +1,11 @@
 import { useSelector, useDispatch } from "react-redux";
-// import { useState } from "react";
 import { FlatList, Button, View } from "react-native";
 import { Avatar, ListItem, Icon } from "react-native-elements";
-import { baseUrl } from "../shared/baseUrl";
-import { selectAllHikes, toggleFavoriteHike } from "../features/hikes/hikesSlice";
-// import { HIKES } from "../shared/HIKES";
+import { toggleFavoriteHike } from "../features/hikes/hikesSlice";
+
 
 const HikesScreen = ({ navigation }) => {
-    // const [hikes, setHikes] = useState(HIKES);
+
     const dispatch = useDispatch();
 
     const hikes = useSelector((state) => state.hikes.hikesArray).toReversed();
@@ -18,10 +16,10 @@ const HikesScreen = ({ navigation }) => {
             <ListItem
                 key={hike.id}
                 onPress={() =>
-                    navigation.navigate('HikeInfo', { hike })
+                    navigation.navigate('HikeInfo', { hikeId: hike.id })
                 }
             >
-                <Avatar source={{ uri: baseUrl + hike.image }} rounded />
+                <Avatar source={hike.image} rounded />
                 <ListItem.Content>
                     <ListItem.Title>{hike.title}</ListItem.Title>
                     <ListItem.Subtitle>
