@@ -1,25 +1,13 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { baseUrl } from "../../shared/baseUrl";
+import { createSlice } from "@reduxjs/toolkit";
+import { OVERLOOKS } from '../../shared/OVERLOOKS';
 
-export const fetchOverlooks = createAsyncThunk(
-    'overlooks/fetchOverlooks',
-    async () => {
-        const response = await fetch(baseUrl + 'overlooks');
-        if (!response.ok) {
-            return Promise.reject('Unable to fetch, status: ' + response.status)
-        }
-        const data = await response.json();
-        return data
-    }
-);
+const initialState = {
+    overlooksArray: OVERLOOKS
+}
 
 const overlooksSlice = createSlice({
     name: 'overlooks',
-    initialState: {
-        isLoading: true,
-        errMsg: null,
-        overlooksArray: []
-    },
+    initialState,
     reducers: {
         toggleFavoriteOverlook: (state, action) => {
             const overlook = state.overlooksArray.find(
@@ -30,22 +18,6 @@ const overlooksSlice = createSlice({
             }
         }
     },
-    extraReducers: (builder) => {
-        builder
-            .addCase(fetchOverlooks.pending, (state) => {
-                state.isLoading = true;
-                state.errMsg = null;
-            })
-            .addCase(fetchOverlooks.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.errMsg = null;
-                state.overlooksArray = action.payload;
-            })
-            .addCase(fetchOverlooks.rejected, (state, action) => {
-                state.isLoading = false;
-                state.errMsg = action.error ? action.error.message : 'Fetch failed'
-            })
-    }
 });
 
 

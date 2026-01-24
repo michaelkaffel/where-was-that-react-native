@@ -128,20 +128,14 @@ const OverlooksNavigator = () => {
                 name='OverlookInfo'
                 component={OverlookInfoScreen}
                 options={({ route }) => ({
-                    title: route.params.overlook.title
+                    title: 'Overlooks'
                 })}
             />
         </Stack.Navigator>
     )
 }
 
-const Main = () => {
-
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(fetchOverlooks());
-    }, [dispatch])
+const Main = () => {    
 
     return (
         <View

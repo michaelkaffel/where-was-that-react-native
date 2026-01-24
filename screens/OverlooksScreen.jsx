@@ -1,27 +1,23 @@
 import { useSelector, useDispatch } from "react-redux";
-// import { useState } from "react";
 import { FlatList, Button, View } from "react-native";
 import { Avatar, ListItem, Icon } from "react-native-elements";
-import { baseUrl } from "../shared/baseUrl";
 import { toggleFavoriteOverlook } from "../features/overlooks/overlooksSlice";
-// import { OVERLOOKS } from "../shared/OVERLOOKS";
 
 const OverlooksScreen = ({ navigation }) => {
-    // const [overlooks, setOverlooks] = useState(OVERLOOKS);
-
-    const overlooks = useSelector((state) => state.overlooks.overlooksArray).toReversed();
 
     const dispatch = useDispatch()
+
+    const overlooks = useSelector((state) => state.overlooks.overlooksArray).toReversed();
 
     const renderOverlook = ({ item: overlook }) => {
         return (
             <ListItem
                 key={overlook.id}
                 onPress={() =>
-                    navigation.navigate('OverlookInfo', { overlook })
+                    navigation.navigate('OverlookInfo', { overlookId: overlook.id })
                 }
             >
-                <Avatar source={{ uri: baseUrl + overlook.image }} rounded />
+                <Avatar source={ overlook.image } rounded />
                 <ListItem.Content>
                     <ListItem.Title>{overlook.title}</ListItem.Title>
                     <ListItem.Subtitle>{overlook.location}</ListItem.Subtitle>

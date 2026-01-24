@@ -4,11 +4,11 @@ import { Avatar, ListItem, Icon } from 'react-native-elements';
 import { toggleFavoriteCampsite } from "../features/campsites/campsitesSlice";
 
 const CampsitesScreen = ({ navigation }) => {
-    // const [campsites, setCampsites] = useState(CAMPSITES);
+
     const dispatch = useDispatch()
 
     const campsites = useSelector((state) => state.campsites.campsitesArray).toReversed();
-    
+
 
     const renderCampsite = ({ item: campsite }) => {
         return (
