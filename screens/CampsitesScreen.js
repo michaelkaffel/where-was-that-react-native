@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { FlatList, Button, View } from "react-native";
 import { Avatar, ListItem, Icon } from 'react-native-elements';
 import { baseUrl } from "../shared/baseUrl";
-import { patchFavCampsite } from "../features/campsites/campsitesSlice";
+import { toggleFavoriteCampsite } from "../features/campsites/campsitesSlice";
 // import { CAMPSITES } from "../shared/CAMPSITES";
 
 const CampsitesScreen = ({ navigation }) => {
@@ -20,10 +20,10 @@ const CampsitesScreen = ({ navigation }) => {
             <ListItem
                 key={campsite.id}
                 onPress={() =>
-                    navigation.navigate('CampsiteInfo', { campsite })
+                    navigation.navigate('CampsiteInfo', { campsiteId: campsite.id })
                 }
             >
-                <Avatar source={{ uri: baseUrl + campsite.image }} rounded />
+                <Avatar source={campsite.image} rounded />
                 <ListItem.Content>
                     <ListItem.Title>{campsite.title}</ListItem.Title>
                     <ListItem.Subtitle>
@@ -35,7 +35,7 @@ const CampsitesScreen = ({ navigation }) => {
                     type='font-awesome'
                     color='#da0e0e'
                     onPress={() => {
-                        dispatch(patchFavCampsite(campsite));
+                        dispatch(toggleFavoriteCampsite(campsite.id));
                     }}
                 />
             </ListItem>

@@ -140,7 +140,6 @@ const Main = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchCampsites());
         dispatch(fetchHikes());
         dispatch(fetchOverlooks());
     }, [dispatch])
