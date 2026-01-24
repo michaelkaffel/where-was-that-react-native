@@ -1,14 +1,17 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 // import { useState } from "react";
 import { FlatList, Button, View } from "react-native";
-import { Avatar, ListItem } from "react-native-elements";
+import { Avatar, ListItem, Icon } from "react-native-elements";
 import { baseUrl } from "../shared/baseUrl";
+import { selectAllHikes, toggleFavoriteHike } from "../features/hikes/hikesSlice";
 // import { HIKES } from "../shared/HIKES";
 
 const HikesScreen = ({ navigation }) => {
     // const [hikes, setHikes] = useState(HIKES);
+    const dispatch = useDispatch();
 
-    const hikes = useSelector((state) => state.hikes.hikesArray);
+    const hikes = useSelector((state) => state.hikes.hikesArray).toReversed();
+
 
     const renderHike = ({ item: hike }) => {
         return (
@@ -25,6 +28,14 @@ const HikesScreen = ({ navigation }) => {
                         {hike.location}
                     </ListItem.Subtitle>
                 </ListItem.Content>
+                <Icon 
+                    name={hike.favorite ? 'heart' : 'heart-o'}
+                    type='font-awesome'
+                    color='#da0e0e'
+                    onPress={() => {
+                        dispatch(toggleFavoriteHike(hike.id))
+                    }}
+                />
             </ListItem>
         );
     };

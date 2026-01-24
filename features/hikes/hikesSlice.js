@@ -21,7 +21,16 @@ const hikesSlice = createSlice({
         errMsg: null,
         hikesArray: []
     },
-    reducers: {},
+    reducers: {
+        toggleFavoriteHike: (state, action) => {
+            const hike = state.hikesArray.find(
+                 (hike) => hike.id === action.payload
+            );
+            if (hike) {
+                hike.favorite = !hike.favorite
+            }
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchHikes.pending, (state) => {
@@ -41,3 +50,5 @@ const hikesSlice = createSlice({
 });
 
 export const hikesReducer = hikesSlice.reducer;
+export const { toggleFavoriteHike } = hikesSlice.actions;
+

@@ -13,6 +13,24 @@ export const fetchCampsites = createAsyncThunk(
     }
 )
 
+export const patchFavCampsite = createAsyncThunk(
+    'campsites/patchFavCampsite',
+    async ( campsite ) => {
+        const response = await fetch(baseUrl + 'campsites/' + campsite.id, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ favorite: !campsite.favorite})
+        });
+        if (!response.ok) {
+            return Promise.reject('Unable to update favorite, status: ' + response.status)
+        };
+        return await response.json()
+        
+    }
+)
+
 
 const campsitesSlice = createSlice({
     name: 'campsites',
@@ -45,10 +63,19 @@ const campsitesSlice = createSlice({
             .addCase(fetchCampsites.rejected, (state, action) => {
                 state.isLoading = false;
                 state.errMsg = action.error ? action.error.message : 'Failed to fetch'
-            }); 
+            })
+            .addCase(patchFavCampsite.fulfilled, (state, action) => {
+                const updated = action.payload;
+                const campsite = state.campsitesArray.find(
+                    (campsite) => campsite.id === updated.id
+                )
+                if (campsite) {
+                    campsite.favorite = updated.favorite;
+                }
+            }) 
     }
 });
 
 export const campsitesReducer = campsitesSlice.reducer;
-
 export const { toggleFavoriteCampsite } = campsitesSlice.actions
+

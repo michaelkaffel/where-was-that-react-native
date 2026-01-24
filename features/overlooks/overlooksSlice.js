@@ -20,7 +20,16 @@ const overlooksSlice = createSlice({
         errMsg: null,
         overlooksArray: []
     },
-    reducers: {},
+    reducers: {
+        toggleFavoriteOverlook: (state, action) => {
+            const overlook = state.overlooksArray.find(
+                (overlook) => overlook.id === action.payload
+            );
+            if (overlook) {
+                overlook.favorite = !overlook.favorite
+            }
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchOverlooks.pending, (state) => {
@@ -40,4 +49,5 @@ const overlooksSlice = createSlice({
 });
 
 
-export const overlooksReducer = overlooksSlice.reducer 
+export const overlooksReducer = overlooksSlice.reducer;
+export const { toggleFavoriteOverlook } = overlooksSlice.actions;
