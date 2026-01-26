@@ -1,7 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 import { FlatList, Button, View } from "react-native";
 import { Avatar, ListItem, Icon } from 'react-native-elements';
-import { toggleFavoriteCampsite } from "../features/campsites/campsitesSlice";
+import { removeCampsite, toggleFavoriteCampsite } from "../features/campsites/campsitesSlice";
+import { getImageSource } from "../utils/getImageSource";
+
 
 const CampsitesScreen = ({ navigation }) => {
 
@@ -20,7 +22,7 @@ const CampsitesScreen = ({ navigation }) => {
                     navigation.navigate('CampsiteInfo', { campsiteId: campsite.id })
                 }
             >
-                <Avatar source={campsite.image} rounded />
+                <Avatar source={getImageSource(campsite.image)} rounded />
                 <ListItem.Content>
                     <ListItem.Title>{campsite.title}</ListItem.Title>
                     <ListItem.Subtitle>
@@ -33,6 +35,14 @@ const CampsitesScreen = ({ navigation }) => {
                     color='#da0e0e'
                     onPress={() => {
                         dispatch(toggleFavoriteCampsite(campsite.id));
+                    }}
+                />
+                <Icon 
+                    name='trash-o'
+                    type='font-awesome'
+                    color='black'
+                    onPress={() => {
+                        dispatch(removeCampsite(campsite));
                     }}
                 />
             </ListItem>
@@ -50,7 +60,7 @@ const CampsitesScreen = ({ navigation }) => {
                     style={{ margin: 15 }}
                     onPress={() => {
                         navigation.navigate('AddLocationsScreen');
-                        
+
                     }
                     }
 

@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Text, View, StyleSheet } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
 import { toggleFavoriteCampsite } from './campsitesSlice';
+import { getImageSource } from '../../utils/getImageSource';
 
 
 
@@ -22,7 +23,7 @@ const RenderCampsite = ({ campsiteId }) => {
         <Card>
             <Card.Title>{campsite.title}</Card.Title>
             <Card.Divider />
-            <Card.Image source={campsite.image}></Card.Image>
+            <Card.Image source={getImageSource(campsite.image)}></Card.Image>
             <View style={styles.favLocationRow}>
                 <Icon
                     name={campsite.favorite ? 'heart' : 'heart-o'}

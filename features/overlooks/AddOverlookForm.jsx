@@ -39,7 +39,7 @@ const AddOverlookForm = () => {
         <>
             <ScrollView contentContainerStyle={styles.container}>
                 <Input
-                    placeholder='Name of Overloon'
+                    placeholder='Name of Overlook'
                     leftIcon={
                         <Icon
                             name='road'

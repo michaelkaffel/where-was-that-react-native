@@ -9,6 +9,23 @@ const campsitesSlice = createSlice({
     name: 'campsites',
     initialState,
     reducers: {
+        addCampsite: (state, action) => {
+            const identifier = Math.floor(Math.random() * 1000);
+
+            const newCampsite = {
+                id: identifier,
+                key: identifier,
+                kindOfPlace: 'campsite',
+                ...action.payload
+            };
+            state.campsitesArray.push(newCampsite);
+            console.log(state.campsitesArray)
+        },
+        removeCampsite: (state, action) => {
+            state.campsitesArray = state.campsitesArray.filter(
+                (campsite) => campsite.id !== action.payload.id
+            )
+        },
         toggleFavoriteCampsite: (state, action) => {
             const campsite = state.campsitesArray.find(
                 (campsite) => campsite.id === action.payload
@@ -22,5 +39,5 @@ const campsitesSlice = createSlice({
 });
 
 export const campsitesReducer = campsitesSlice.reducer;
-export const { toggleFavoriteCampsite } = campsitesSlice.actions
+export const { addCampsite, removeCampsite, toggleFavoriteCampsite } = campsitesSlice.actions
 
