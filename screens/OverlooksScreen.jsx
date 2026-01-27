@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
 import { FlatList, Button, View } from "react-native";
 import { Avatar, ListItem, Icon } from "react-native-elements";
-import { toggleFavoriteOverlook } from "../features/overlooks/overlooksSlice";
+import { removeOverlook, toggleFavoriteOverlook } from "../features/overlooks/overlooksSlice";
+import { getImageSource } from "../utils/getImageSource";
 
 const OverlooksScreen = ({ navigation }) => {
 
@@ -17,17 +18,25 @@ const OverlooksScreen = ({ navigation }) => {
                     navigation.navigate('OverlookInfo', { overlookId: overlook.id })
                 }
             >
-                <Avatar source={ overlook.image } rounded />
+                <Avatar source={getImageSource(overlook.image)} rounded />
                 <ListItem.Content>
                     <ListItem.Title>{overlook.title}</ListItem.Title>
                     <ListItem.Subtitle>{overlook.location}</ListItem.Subtitle>
                 </ListItem.Content>
-                <Icon 
+                <Icon
                     name={overlook.favorite ? 'heart' : 'heart-o'}
                     type='font-awesome'
                     color='#da0e0e'
                     onPress={() => {
                         dispatch(toggleFavoriteOverlook(overlook.id))
+                    }}
+                />
+                <Icon
+                    name='trash-o'
+                    type='font-awesome'
+                    color='black'
+                    onPress={() => {
+                        dispatch(removeOverlook(overlook));
                     }}
                 />
             </ListItem>

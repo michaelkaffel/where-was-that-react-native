@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
 import { FlatList, Button, View } from "react-native";
 import { Avatar, ListItem, Icon } from "react-native-elements";
-import { toggleFavoriteHike } from "../features/hikes/hikesSlice";
+import { addHike, removeHike, toggleFavoriteHike } from "../features/hikes/hikesSlice";
+import { getImageSource } from "../utils/getImageSource";
 
 
 const HikesScreen = ({ navigation }) => {
@@ -19,7 +20,7 @@ const HikesScreen = ({ navigation }) => {
                     navigation.navigate('HikeInfo', { hikeId: hike.id })
                 }
             >
-                <Avatar source={hike.image} rounded />
+                <Avatar source={getImageSource(hike.image)} rounded />
                 <ListItem.Content>
                     <ListItem.Title>{hike.title}</ListItem.Title>
                     <ListItem.Subtitle>
@@ -32,6 +33,14 @@ const HikesScreen = ({ navigation }) => {
                     color='#da0e0e'
                     onPress={() => {
                         dispatch(toggleFavoriteHike(hike.id))
+                    }}
+                />
+                <Icon 
+                    name='trash-o'
+                    type='font-awesome'
+                    color='black'
+                    onPress={() => {
+                        dispatch(removeHike(hike))
                     }}
                 />
             </ListItem>

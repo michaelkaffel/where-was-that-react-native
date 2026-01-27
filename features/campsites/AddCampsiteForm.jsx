@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Text, View, ScrollView, StyleSheet, Platform, Image } from 'react-native';
+import { Text, View, ScrollView, StyleSheet, Platform } from 'react-native';
 import { Input, Icon, Button, Card } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -47,12 +47,11 @@ const AddCampsiteForm = () => {
             description,
             location,
             dateVisited: dateVisited.toISOString('en-US'),
-            image: imageUrl
+            image: imageUrl,
+            kindOfPlace: 'campsite'
         }
 
         dispatch(addCampsite(newCampsite))
-
-        console.log(newCampsite)
 
     };
 
@@ -66,7 +65,7 @@ const AddCampsiteForm = () => {
             });
 
             if (capturedImage.assets) {
-                console.log(capturedImage.assets[0]);
+
                 setImageUrl(capturedImage.assets[0].uri)
             }
         }
@@ -193,23 +192,34 @@ const AddCampsiteForm = () => {
                     </Card>
                 )}
                 <View style={{ margin: 10 }}>
-                    {showSubmitButton && (<Button
-                        title='Submit'
-                        onPress={() => {
-                            handleSubmit();
-                            resetForm();
-                        }}
-                    />)}
+                    {showSubmitButton &&
+                        (<Button
+                            title='Submit'
+                            onPress={() => {
+                                handleSubmit();
+                                resetForm();
+                            }}
+                        />)}
                 </View>
                 <View style={{ margin: 10 }}>
                     <Button
                         title='See All Campsites'
                         raised
-                        
+
                         buttonStyle={{ backgroundColor: '#aa7804' }}
                         onPress={() => {
                             navigation.navigate('CampsitesScreen');
                         }}
+
+                    />
+                </View>
+                <View style={{ margin: 10 }}>
+                    <Button
+                        title='Reset'
+                        raised
+
+                        buttonStyle={{ backgroundColor: '#558453ff' }}
+                        onPress={resetForm}
 
                     />
                 </View>

@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { View } from "react-native";
-
-import { Tab, TabView, Text } from 'react-native-elements';
+import { Tab, TabView } from 'react-native-elements';
 import AddCampsiteForm from "../features/campsites/AddCampsiteForm";
 import AddHikeForm from "../features/hikes/AddHikeForm";
 import AddOverlookForm from "../features/overlooks/AddOverlookForm";

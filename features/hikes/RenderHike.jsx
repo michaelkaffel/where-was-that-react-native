@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Text, View, StyleSheet } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
 import { toggleFavoriteHike } from './hikesSlice';
+import { getImageSource } from '../../utils/getImageSource';
 
 const RenderHike = ({ hikeId }) => {
 
@@ -19,7 +20,7 @@ const RenderHike = ({ hikeId }) => {
             <Card>
                 <Card.Title>{hike.title}</Card.Title>
                 <Card.Divider />
-                <Card.Image source={hike.image}></Card.Image>
+                <Card.Image source={getImageSource(hike.image)}></Card.Image>
                 <View
                     style={styles.favLocationRow}
                 >

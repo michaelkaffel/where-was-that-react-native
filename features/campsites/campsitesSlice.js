@@ -19,7 +19,7 @@ const campsitesSlice = createSlice({
                 ...action.payload
             };
             state.campsitesArray.push(newCampsite);
-            console.log(state.campsitesArray)
+            
         },
         removeCampsite: (state, action) => {
             state.campsitesArray = state.campsitesArray.filter(

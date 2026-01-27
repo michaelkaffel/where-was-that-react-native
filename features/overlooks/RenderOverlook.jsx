@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Text, View, StyleSheet } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
 import { toggleFavoriteOverlook } from './overlooksSlice';
+import { getImageSource } from '../../utils/getImageSource';
 
 
 
@@ -21,7 +22,7 @@ const RenderOverlook = ({ overlookId }) => {
         <Card>
             <Card.Title>{overlook.title}</Card.Title>
             <Card.Divider />
-            <Card.Image source={overlook.image}></Card.Image>
+            <Card.Image source={getImageSource(overlook.image)}></Card.Image>
             <View style={styles.favLocationRow}>
                 <Icon 
                     name={overlook.favorite ? 'heart' : 'heart-o'}
